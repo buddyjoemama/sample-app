@@ -1,3 +1,4 @@
+import { Link, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
@@ -7,6 +8,7 @@ import {
   StatusBar,
   FlatList,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 const DATA = [
@@ -25,11 +27,13 @@ const DATA = [
 ];
 
 type ItemProps = {title: string};
+//const router = useRouter();
 
 const Item = ({title}: ItemProps) => (
-  <View style={styles.item}>
+  <TouchableOpacity style={styles.item}>
     <Text style={styles.title}>{title}</Text>
-  </View>
+    <Link href={{pathname: 'editor'}}>Edit</Link>
+  </TouchableOpacity>
 );
 
 export default function DetailsScreen() {
