@@ -30,11 +30,17 @@ type ItemProps = {title: string};
 //const router = useRouter();
 
 const Item = ({title}: ItemProps) => (
-  <TouchableOpacity style={styles.item}>
+  <TouchableOpacity style={styles.storyItem}>
     <Text style={styles.title}>{title}</Text>
     <Link href={{pathname: 'editor'}}>Edit</Link>
   </TouchableOpacity>
 );
+
+function StoryItem(props: ItemProps) {
+  return (
+    <Item title={props.title}></Item>
+  );
+}
 
 export default function DetailsScreen() {
 
@@ -57,7 +63,7 @@ export default function DetailsScreen() {
 
   return (
     <SafeAreaView>
-      <FlatList data={DATA} renderItem={({item}) => <Item title={item.title}/> }/>
+      <FlatList data={DATA} renderItem={({item}) => <StoryItem title={item.title}/> }/>
     </SafeAreaView>
   );
 }
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
+  storyItem: {
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
